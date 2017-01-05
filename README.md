@@ -9,7 +9,7 @@ AngularJS:
 * Bootstrap dialog is used for Delete operation.
 
 Web API:
-Web API service is used to connect to database for select, insert, update operations
+* API service is used to connect to database for select, insert, update operations
 
 Database:
 * Project uses SQL Serve Database - School. Download has a backup file called School.bak

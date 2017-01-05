@@ -1,0 +1,73 @@
+﻿@{ 
+    ViewBag.Title = "Edit Student";
+}
+<form class="form-horizontal" name="editForm" novalidate>
+    <h3> @ViewBag.Title - {{fullName()}}</h3>    
+    <div class="form-group">
+        <label for="stdId" class="col-sm-2 control-label">Id</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="stdId" ng-model="student.studentId" name="stdId" disabled />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="stdFirstName" class="col-sm-2 control-label">First Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="stdFirstName" name="stdFirstName" placeholder="First Name" 
+                   ng-model="student.firstName" ng-required="true" ng-maxlength="20" ng-pattern="/^[a-zA-Z\s]+$/"/>
+            <div ng-messages="editForm.stdFirstName.$error" ng-if="editForm.stdFirstName.$touched || editForm.stdFirstName.$dirty">
+                <div ng-message="required">First Name is required.</div>
+                <div ng-message="pattern">Characters with spaces only are allowed.</div>
+                <div ng-message="maxlength">Maximum of 20 characters are allowed.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="stdLastName" class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="stdLastName" name="stdLastName" placeholder="Last Name" 
+                   ng-model="student.lastName" ng-required="true" ng-maxlength="20" ng-pattern="/^[a-zA-Z\s]+$/"/>
+            <div ng-messages="editForm.stdLastName.$error" ng-if="editForm.stdLastName.$touched || editForm.stdLastName.$dirty">
+                <div ng-message="required">Last Name is required.</div>
+                <div ng-message="pattern">Characters with spaces only are allowed.</div>
+                <div ng-message="maxlength">Maximum of 20 characters are allowed.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="stdEmail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="stdEmail" name="stdEmail" placeholder="Email" 
+                   ng-model="student.email" ng-required="true" ng-maxlength="50" ng-trim="false" 
+                   ng-model-options="{ updateOn: 'default blur', debounce: {default: 500, blur: 0} }" 
+                   data-pv-unique= "{key: student.studentId, property: 'email'}" />
+            <div ng-messages="editForm.stdEmail.$error" ng-if="editForm.stdEmail.$touched || editForm.stdEmail.$dirty">
+                <div ng-message="required">e-mail is required.</div>
+                <div ng-message="email">e-mail address is invalid.</div>
+                <div ng-message="maxlength">Maximum of 50 characters are allowed.</div>
+                <div ng-message="unique">e-mail must be unique</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="stdPhone" class="col-sm-2 control-label">Phone</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="stdPhone" name="stdPhone" placeholder="Phone" 
+                   ng-model="student.phone" ng-required="true" ng-maxlength="10" ng-pattern="/^\d{10}$/" ng-trim="false" />
+            <div ng-messages="editForm.stdPhone.$error" ng-if="editForm.stdPhone.$touched || editForm.stdPhone.$dirty">
+                <div ng-message="required">Phone is required.</div>
+                <div ng-message="pattern">Must be 10 digit number.</div>
+                <div ng-message="maxlength">Maximum of 10 digits phone number.</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="button" class="btn btn-default" ng-click="save()">Save</button>
+            <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</form>

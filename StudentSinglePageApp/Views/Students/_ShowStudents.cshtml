@@ -1,0 +1,28 @@
+﻿@{ 
+    ViewBag.Title = "View Students";
+}
+<div class="table-responsive">
+    <br/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>                
+                <th>First Name</th>                
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>                
+            </tr>
+        </thead>        
+        <tbody>
+            <tr data-ng-repeat="stud in students">
+                <td>{{stud.studentId}}</td>
+                <td>{{stud.firstName}}</td>
+                <td>{{stud.lastName}}</td>
+                <td>{{stud.email}}</td>
+                <td>{{stud.phone | telephone}}</td>                
+                <td><a data-ng-click ="editStudent(stud.studentId)">Edit</a></td>
+                <td><a data-ng-click ="deleteStudent(stud.studentId, stud.firstName, stud.lastName)">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
